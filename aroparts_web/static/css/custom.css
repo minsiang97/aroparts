@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+  padding-bottom: 15px;
+  position: relative;
+  min-height: 100vh;
+}
+
+footer {
+  font-size: 11px;
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #303030;
+}
+
+footer a {
+  text-decoration: none;
+  color: #303030;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  z-index: 6;
+  border: none;
+}
+
+.card-row {
+  height: 500px;
+}
+
+.card-image {
+  position: relative;
+}
+
+.card-img {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  width: 21vw;
+  transform: translateY(-50%);
+}
+
+@media (max-width:767px){
+  .card-image{
+    height: 15vh;
+  }
+
+  .card-img {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25vw;
+  }
+}
+
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+
+.icon {
+  padding: 15px;
+  background: black;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+  
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid black;
+}
+
+body {
+  background-image: linear-gradient(black,white);
+  margin: 0;
+}
+
+.card-div{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.card-div img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  opacity: 0.5;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-title {
+  color: white;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.btn {
+  height: 50px;
+  background-color: black;
+  color: white;
+}
+
+.log-in{
+  font-size: 150%;
+}
+
+button:hover {
+  background-color: rgb(31, 30, 30);
+}
+
+.admin-logout{
+  position: absolute;
+  right: 0;
+}
+
+.flash{
+  margin: auto;
+  margin-top: 20px;
+  animation: slideIn 0.7s ease-in-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
