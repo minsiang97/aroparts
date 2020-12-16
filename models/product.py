@@ -9,3 +9,4 @@ class Product(BaseModel):
     category=pw.ForeignKeyField(Category, backref="products", on_delete = "CASCADE")
     type=pw.ForeignKeyField(Type, backref="products", on_delete = "CASCADE", null=True)
     price=pw.DecimalField(decimal_places = 2)
+    image_path=pw.CharField(null=True)

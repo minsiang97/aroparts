@@ -13,4 +13,4 @@ def index(category_id, type_id):
     category = Category.get_by_id(category_id)
     type = Type.get_by_id(type_id)
     products = Product.select().where(Product.category == category, Product.type == type)
-    return jsonify ([{"id" : p.id, "product_name" : p.name, "category" : p.category_id, "type" : p.type_id, "description" : p.description, "price" : p.price,} for p in products])
+    return jsonify ([{"id" : p.id, "product_name" : p.name, "category" : p.category_id, "type" : p.type_id, "description" : p.description, "price" : p.price} for p in products])

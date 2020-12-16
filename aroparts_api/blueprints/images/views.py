@@ -12,7 +12,7 @@ images_api_blueprint = Blueprint('images_api',
 def index(category_id, type_id):
     category = Category.get_by_id(category_id)
     type = Type.get_by_id(type_id)
-    products = Product.select().where(Product.category == category, Product.type == type)
+    products = Product.select().where(Product.category == category, Product.type == type)   
     images = Image.select().where(Image.product.in_(products))
-    return jsonify ([{"id" : i.id, "product" : i.product.name, "category" : i.category_id, "type" : i.type_id, "url" : i.new_image_url, "description" : i.product.description} for i in images])
+    return jsonify ([[{"id" : i.id, "product" : i.product.name, "category" : i.category_id, "type" : i.type_id, "url" : i.new_image_url, "description" : i.product.description} for i in p.images] for p in products])
 
