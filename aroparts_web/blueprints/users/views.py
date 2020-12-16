@@ -10,22 +10,12 @@ users_blueprint = Blueprint('users',
 
 @users_blueprint.route('/new', methods=['GET'])
 def new():
-    return render_template('users/new.html')
+    pass
 
 
 @users_blueprint.route('/', methods=['POST'])
 def create():
-    user_password = request.form.get("password")
-    user = User(username=request.form.get("user_username"), password=user_password)
-    
-    if user.save():
-        session["user_id"] = user.id
-        login_user(user)
-        flash('Successfully Signed Up')
-        return redirect(url_for("admin.index"))
-    else:
-        flash(f"{user.errors[0]}")
-        return redirect(url_for("users.new"))
+    pass
 
 @users_blueprint.route('/<username>', methods=["GET"])
 def show(username):
