@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,redirect, request, session
+from flask import Blueprint, render_template,redirect, request, session, url_for
 from flask_login import login_required, current_user, login_user
 from models.user import User
 
@@ -10,12 +10,22 @@ users_blueprint = Blueprint('users',
 
 @users_blueprint.route('/new', methods=['GET'])
 def new():
-    pass
+    return render_template('users/new.html')
 
 
 @users_blueprint.route('/', methods=['POST'])
 def create():
-    pass
+    user_password = request.form.get("password")
+    user = User(username=request.form.get("user_username"), password=user_password)
+    
+    if user.save():
+        session["user_id"] = user.id
+        login_user(user)
+        flash('Successfully Signed Up')
+        return redirect(url_for("admin.index"))
+    else:
+        flash(f"{user.errors[0]}")
+        return redirect(url_for("users.new"))
 
 @users_blueprint.route('/<username>', methods=["GET"])
 def show(username):
