@@ -11,7 +11,7 @@ products_api_blueprint = Blueprint('products_api',
 def index(category_id):
     category = Category.get_by_id(category_id)
     products = Product.select().where(Product.category == category)
-    return jsonify ([{"id" : p.id, "product_name" : p.name, "category" : p.category_id, "description" : p.description, "price" : p.price, "url" : p.image_path} for p in products])
+    return jsonify ([{"id" : p.id, "product_name" : p.name, "category" : p.category_id, "price" : p.price, "url" : p.image_path} for p in products])
 
 @products_api_blueprint.route('/<product_id>', methods=['GET'])
 def product(product_id):

@@ -11,5 +11,5 @@ images_api_blueprint = Blueprint('images_api',
 def index(product_id):
     product = Product.get_by_id(product_id)   
     images = Image.select().where(Image.product == product)
-    return jsonify ([{"id" : i.id, "product" : i.product.name, "category" : i.category_id, "url" : i.new_image_url, "description" : i.product.description} for i in images])
+    return jsonify ([{"id" : i.id, "product" : i.product.name, "category" : i.category_id, "url" : i.new_image_url} for i in images])
 
