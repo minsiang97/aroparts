@@ -9,7 +9,6 @@ from flask_wtf.csrf import CSRFProtect
 from models.user import User, MyAdminIndexView, AuthenticatedMenuLink
 from models.product import Product
 from models.category import Category
-from models.type import Type
 from models.image import Image
 
 web_dir = os.path.join(os.path.dirname(
@@ -22,7 +21,6 @@ csrf = CSRFProtect(app)
 admin.add_view(ModelView(User))
 admin.add_view(ModelView(Product))
 admin.add_view(ModelView(Category))
-admin.add_view(ModelView(Type))
 admin.add_view(ModelView(Image))
 admin.add_link(AuthenticatedMenuLink(name='Logout',
                                          endpoint='logout'))
