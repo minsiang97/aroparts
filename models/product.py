@@ -3,7 +3,7 @@ from models.category import Category
 import peewee as pw
 
 class Product(BaseModel):
-    name=pw.CharField(unique=True, null=False)
+    name=pw.CharField(unique=False, null=False)
     description_line_1=pw.TextField(null=True)
     description_line_2=pw.TextField(null=True)
     description_line_3=pw.TextField(null=True)
