@@ -5,7 +5,7 @@ from flask_assets import Environment, Bundle
 from .util.assets import bundles
 from models.user import User
 from werkzeug.security import check_password_hash
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 assets = Environment(app)
 assets.register(bundles)
@@ -19,7 +19,10 @@ def internal_server_error(e):
 
 @app.route("/")
 def home():
-    return render_template('home.html')
+    if current_user.is_authenticated:
+        return redirect(url_for('admin.index'))
+    else :
+        return render_template('home.html')
 
 @app.route("/", methods=["POST"])
 def login():
@@ -32,7 +35,7 @@ def login():
         hashed_password = user.password_hash
         result = check_password_hash(hashed_password, password_to_check)
         if result :
-            login_user(user)
+            login_user(user, remember = True)
             flash ("Login successfully", "success")
             return redirect(url_for('admin.index'))
         else :
