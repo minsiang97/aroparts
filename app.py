@@ -10,6 +10,7 @@ from models.user import User, MyAdminIndexView, AuthenticatedMenuLink
 from models.product import Product
 from models.category import Category
 from models.image import Image
+from models.sub_category import SubCategory
 
 web_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'aroparts_web')
@@ -21,6 +22,7 @@ csrf = CSRFProtect(app)
 admin.add_view(ModelView(User))
 admin.add_view(ModelView(Product))
 admin.add_view(ModelView(Category))
+admin.add_view(ModelView(SubCategory))
 admin.add_view(ModelView(Image))
 admin.add_link(AuthenticatedMenuLink(name='Logout',
                                          endpoint='logout'))
