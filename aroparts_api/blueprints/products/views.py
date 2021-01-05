@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify
 from models.image import Image
 from models.product import Product
 from models.category import Category
+from models.sub_category import SubCategory
 
 products_api_blueprint = Blueprint('products_api',
                              __name__,
@@ -23,3 +24,11 @@ def products():
     products = Product.select()
     return jsonify ([{"id" : p.id, "product_name" : p.name, "product_chinese_name" : p.chinese_name, "category" : p.category_id, "price" : p.price, "url" : p.image_path} for p in products])
 
+@products_api_blueprint.route('/category/sub_category/<sub_category_id>', methods=['GET'])
+def sub_category_products(sub_category_id):
+    sub = SubCategory.get_or_none(SubCategory.id == sub_category_id)
+    products = Product.select().where(Product.sub_category == sub)
+    if products :
+        return jsonify ([{"id" : p.id, "product_name" : p.name, "product_chinese_name" : p.chinese_name, "category" : p.category_id, "price" : p.price, "url" : p.image_path, "sub-category" : p.sub_category_id} for p in products])
+    else :
+        return jsonify ({"message" : "No products found"})
