@@ -12,4 +12,4 @@ categories_api_blueprint = Blueprint('categories_api',
 def index():
     categories = Category.select()
 
-    return jsonify ([{"id" : c.id, "name" : c.name, "sub_categories" : [{"sub" : s.name}for s in c.sub_categories]} for c in categories])
+    return jsonify ([{"id" : c.id, "name" : c.name, "sub_categories" : [{"sub" : s.name, "id" : s.id}for s in c.sub_categories]} for c in categories])
