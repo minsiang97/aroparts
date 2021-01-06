@@ -29,6 +29,6 @@ def sub_category_products(sub_category_id):
     sub = SubCategory.get_or_none(SubCategory.id == sub_category_id)
     products = Product.select().where(Product.sub_category == sub)
     if products :
-        return jsonify ([{"id" : p.id, "product_name" : p.name, "product_chinese_name" : p.chinese_name, "category" : p.category.name, "price" : p.price, "url" : p.image_path, "sub-category" : p.sub_category.name} for p in products])
+        return jsonify ([{"id" : p.id, "product_name" : p.name, "product_chinese_name" : p.chinese_name, "category" : p.category.name, "price" : p.price, "url" : p.image_path, "sub_category" : p.sub_category.name} for p in products])
     else :
         return jsonify ({"message" : "No products found"})
