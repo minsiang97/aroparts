@@ -13,3 +13,10 @@ def index():
     categories = Category.select()
 
     return jsonify ([{"id" : c.id, "name" : c.name, "sub_categories" : [{"sub" : s.name, "id" : s.id}for s in c.sub_categories]} for c in categories])
+
+@categories_api_blueprint.route('/subcategory/<id>', methods=['GET'])
+def show(id):
+    sub_category = SubCategory.get_by_id(id)
+
+    return jsonify ({"id" : sub_category.id, "name" : sub_category.name, "category" : sub_category.category.name})
+
