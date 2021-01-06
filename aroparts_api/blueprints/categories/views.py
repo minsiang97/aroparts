@@ -20,3 +20,9 @@ def show(id):
 
     return jsonify ({"id" : sub_category.id, "name" : sub_category.name, "category" : sub_category.category.name, "category_id" : sub_category.category_id})
 
+@categories_api_blueprint.route('/<id>', methods=['GET'])
+def category(id):
+    category = Category.get_by_id(id)
+
+    return jsonify({"id" : category.id, "name" : category.name})
+
