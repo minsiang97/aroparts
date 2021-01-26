@@ -11,6 +11,7 @@ from models.product import Product
 from models.category import Category
 from models.image import Image
 from models.sub_category import SubCategory
+from models.product_category import ProductCategory
 
 web_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'aroparts_web')
@@ -24,6 +25,7 @@ admin.add_view(ModelView(Product))
 admin.add_view(ModelView(Category))
 admin.add_view(ModelView(SubCategory))
 admin.add_view(ModelView(Image))
+admin.add_view(ModelView(ProductCategory))
 admin.add_link(AuthenticatedMenuLink(name='Logout',
                                          endpoint='logout'))
 

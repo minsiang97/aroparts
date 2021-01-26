@@ -3,6 +3,7 @@ from models.image import Image
 from models.product import Product
 from models.category import Category
 from models.sub_category import SubCategory
+from models.product_category import ProductCategory
 
 products_api_blueprint = Blueprint('products_api',
                              __name__,
@@ -11,8 +12,9 @@ products_api_blueprint = Blueprint('products_api',
 @products_api_blueprint.route('category/<category_id>', methods=['GET'])
 def index(category_id):
     category = Category.get_by_id(category_id)
-    products = Product.select().where(Product.category == category)
-    return jsonify ([{"id" : p.id, "product_name" : p.name, "product_chinese_name" : p.chinese_name, "category" : p.category_id, "price" : p.price, "url" : p.image_path} for p in products])
+    products = ProductCategory.select().where(ProductCategory.category == category)
+
+    return jsonify ([{"id" : p.product_id, "product_name" : p.product.name, "product_chinese_name" : p.product.chinese_name, "category" : p.product.category_id, "price" : p.product.price, "url" : p.product.image_path} for p in products])
 
 @products_api_blueprint.route('/<product_id>', methods=['GET'])
 def product(product_id):
@@ -27,8 +29,8 @@ def products():
 @products_api_blueprint.route('/category/sub_category/<sub_category_id>', methods=['GET'])
 def sub_category_products(sub_category_id):
     sub = SubCategory.get_or_none(SubCategory.id == sub_category_id)
-    products = Product.select().where(Product.sub_category == sub)
+    products = ProductCategory.select().where(ProductCategory.sub_category == sub)
     if products :
-        return jsonify ([{"id" : p.id, "product_name" : p.name, "product_chinese_name" : p.chinese_name, "category" : p.category.name, "price" : p.price, "url" : p.image_path, "sub_category" : p.sub_category.name} for p in products])
+        return jsonify ([{"id" : p.product_id, "product_name" : p.product.name, "product_chinese_name" : p.product.chinese_name, "category" : p.category.name, "price" : p.product.price, "url" : p.product.image_path, "sub_category" : p.sub_category.name} for p in products])
     else :
         return jsonify ({"message" : "No products found"})

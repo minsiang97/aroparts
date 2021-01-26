@@ -16,7 +16,5 @@ class Product(BaseModel):
     description_line_8=pw.TextField(null=True)
     description_line_9=pw.TextField(null=True)
     description_line_10=pw.TextField(null=True)
-    category=pw.ForeignKeyField(Category, backref="products", on_delete = "CASCADE")
-    sub_category=pw.ForeignKeyField(SubCategory, backref="products", on_delete = "CASCADE", null=True)
     price=pw.CharField(null=False)
     image_path=pw.CharField(null=True)
